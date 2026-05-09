@@ -16,7 +16,14 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    goToLogin(context);
+    Future.delayed(const Duration(seconds: 3), () {
+      if (!mounted) return;
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        RouteName.loginScreen,
+        (route) => false,
+      );
+    });
   }
 
   @override
@@ -90,13 +97,4 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
-}
-void goToLogin(BuildContext context) {
-  Future.delayed(const Duration(seconds: 3), () {
-    Navigator.pushNamedAndRemoveUntil(
-      context,
-      RouteName.loginScreen,
-          (route) => false,
-    );
-  });
 }
