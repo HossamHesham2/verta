@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:verta/config/route/route_name.dart';
 import 'package:verta/core/utils/assets_manager.dart';
 import 'package:verta/core/utils/colors_manager.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    goToLogin(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,17 +41,17 @@ class SplashScreen extends StatelessWidget {
             children: [
               // Logo
               Container(
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: ColorsManager.dark0F.withValues(alpha: 0.12),
-                      blurRadius: 25,
-                      offset: const Offset(0, 15),
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: ColorsManager.dark0F.withValues(alpha: 0.12),
+                          blurRadius: 25,
+                          offset: const Offset(0, 15),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-                child: Image.asset(ImagesManager.logo, width: 120.w),
-              )
+                    child: Image.asset(ImagesManager.logo, width: 120.w),
+                  )
                   .animate()
                   .fadeIn(duration: 600.ms)
                   .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1))
@@ -49,13 +61,13 @@ class SplashScreen extends StatelessWidget {
 
               // Title
               Text(
-                "Verta",
-                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                  color: ColorsManager.whiteFF,
-                  fontSize: 36.sp,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
+                    "Verta",
+                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      color: ColorsManager.whiteFF,
+                      fontSize: 36.sp,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
                   .animate()
                   .fadeIn(delay: 300.ms, duration: 600.ms)
                   .moveY(begin: 15, end: 0),
@@ -64,11 +76,11 @@ class SplashScreen extends StatelessWidget {
 
               // Subtitle
               Text(
-                "Organize your life seamlessly",
-                style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: ColorsManager.whiteFF,
-                ),
-              )
+                    "Organize your life seamlessly",
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: ColorsManager.whiteFF,
+                    ),
+                  )
                   .animate()
                   .fadeIn(delay: 500.ms, duration: 700.ms)
                   .moveY(begin: 10, end: 0),
@@ -78,4 +90,13 @@ class SplashScreen extends StatelessWidget {
       ),
     );
   }
+}
+void goToLogin(BuildContext context) {
+  Future.delayed(const Duration(seconds: 3), () {
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      RouteName.loginScreen,
+          (route) => false,
+    );
+  });
 }
