@@ -5,6 +5,8 @@ import 'package:verta/core/utils/colors_manager.dart';
 class CustomFieldBar extends StatelessWidget {
   final String title;
   final bool obscureText;
+  final TextEditingController? controller ;
+  final String? Function(String?)? validator ;
 
   final String hintText;
   final Widget? suffixIcon;
@@ -15,7 +17,9 @@ class CustomFieldBar extends StatelessWidget {
     required this.title,
     required this.hintText,
     this.suffixIcon,
+    this.validator,
     this.prefixIcon,
+    this.controller,
     required this.obscureText,
   });
 
@@ -24,7 +28,10 @@ class CustomFieldBar extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: Theme.of(context).textTheme.titleMedium),
+        Text(title, style: Theme
+            .of(context)
+            .textTheme
+            .titleMedium),
         SizedBox(height: 10.h,),
         Container(
           decoration: BoxDecoration(
@@ -40,10 +47,13 @@ class CustomFieldBar extends StatelessWidget {
           ),
           child: TextFormField(
             obscureText: obscureText,
+            controller: controller,
+            validator:validator ,
             decoration: InputDecoration(
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               hintText: hintText,
+
             ),
           ),
         ),

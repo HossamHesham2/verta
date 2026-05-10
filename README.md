@@ -48,7 +48,7 @@ The app is designed with a premium Glassmorphism UI, supporting both Dark Mode a
 
 ## Navigation
 
-* go_router
+* onGenerate
 
 ## UI & Animations
 
@@ -69,13 +69,13 @@ lib/
 ├── core/
 ├── features/
 │   ├── auth/
-│         ├──── data/
-│         ├── domain/
-│         └── presentation/
+│   │     ├──── data/
+│   │     ├── domain/
+│   │     └── presentation/
 │   ├── tasks/
-│         ├──── data/
-│         ├── domain/
-│         └── presentation/
+│   │     ├──── data/
+│   │     ├── domain/
+│   │     └── presentation/
 │   └── settings/
 │         ├──── data/
 │         ├── domain/
@@ -107,7 +107,7 @@ The application is inspired by modern productivity apps and Apple-like design sy
 Make sure you have installed:
 
 * Flutter SDK
-* Android Studio or VS Code
+* Android Studio 
 * Dart SDK
 
 ---
@@ -115,7 +115,7 @@ Make sure you have installed:
 # ⚙️ Installation
 
 ```bash
-git clone https://github.com/your-username/vetra.git
+git clone https://github.com/HossamHesham2/verta
 
 cd vetra
 
@@ -129,14 +129,16 @@ flutter run
 # 📦 Packages Used
 
 ```yaml
-flutter_bloc:
-hive:
-hive_flutter:
-go_router:
-flutter_animate:
-glassmorphism:
-google_fonts:
-flutter_slidable:
+  flutter_bloc:
+  hive:
+  hive_flutter:
+  flutter_slidable:
+  google_fonts:
+  material_symbols_icons:
+  flutter_screenutil:
+  glassmorphism:
+  flutter_animate:
+  flutter_svg:
 ```
 
 ---
