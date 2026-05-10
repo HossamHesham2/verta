@@ -15,7 +15,6 @@ import 'package:verta/core/widgets/custom_field_bar.dart';
 import 'package:verta/core/widgets/custom_glass_dialog.dart';
 import 'package:verta/features/auth/presentation/manager/auth_bloc.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -54,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               Navigator.pushNamedAndRemoveUntil(
                 context,
                 RouteName.homeScreen,
-                    (route) => false,
+                (route) => false,
               );
             },
           );
@@ -78,14 +77,13 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Scaffold(
             body: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      SizedBox(height: 20.h),
+                      SizedBox(height: 10.h),
                       Container(
-                            margin: EdgeInsets.all(10),
                             padding: EdgeInsets.all(20),
                             decoration: BoxDecoration(
                               color: ColorsManager.whiteFF,
@@ -133,10 +131,10 @@ class _LoginScreenState extends State<LoginScreen> {
                                 boxShadow: [
                                   BoxShadow(
                                     color: ColorsManager.dark0F.withValues(
-                                      alpha: 0.25,
+                                      alpha: 0.25 ,
                                     ),
-                                    blurRadius: 20,
-                                    offset: const Offset(0, 10),
+                                    blurRadius: 24,
+                                    offset: const Offset(5, 20),
                                   ),
                                 ],
                               ),
@@ -191,50 +189,52 @@ class _LoginScreenState extends State<LoginScreen> {
                                   SizedBox(height: 15.h),
                                   Row(
                                         children: [
-                                          Row(
-                                            spacing: 5.w,
-                                            children: [
-                                              RoundCheckBox(
-                                                isChecked: rememberMe,
-                                                checkedColor:
-                                                    ColorsManager.indigo_500,
-                                                border: Border.all(
-                                                  color: Colors.black,
-                                                  width: 1.5.w,
-                                                ),
-                                                size: 22.sp,
-                                                animationDuration:
-                                                    const Duration(
-                                                      milliseconds: 400,
-                                                    ),
-                                                checkedWidget: Icon(
-                                                  Icons.check,
-                                                  color: ColorsManager.whiteFF,
-                                                  size: 16.sp,
-                                                ),
-                                                onTap: (bool? selected) async {
-                                                  rememberMe =
-                                                      selected ?? false;
+                                          RoundCheckBox(
+                                            isChecked: rememberMe,
+                                            checkedColor:
+                                                ColorsManager.indigo_500,
+                                            border: Border.all(
+                                              color: Colors.black,
+                                              width: 1.5.w,
+                                            ),
+                                            size: 22.sp,
+                                            animationDuration: const Duration(
+                                              milliseconds: 400,
+                                            ),
+                                            checkedWidget: Icon(
+                                              Icons.check,
+                                              color: ColorsManager.whiteFF,
+                                              size: 16.sp,
+                                            ),
+                                            onTap: (bool? selected) async {
+                                              rememberMe = selected ?? false;
 
-                                                  await SharedPrefHelper.setData(
-                                                    ConstVariables.rememberMe,
-                                                    rememberMe,
-                                                  );
+                                              await SharedPrefHelper.setData(
+                                                ConstVariables.rememberMe,
+                                                rememberMe,
+                                              );
 
-                                                  setState(() {});
-                                                },
-                                              ),
-
-                                              Text(
-                                                "Remember me",
-                                                softWrap: true,
-                                                style: Theme.of(
-                                                  context,
-                                                ).textTheme.bodyMedium,
-                                              ),
-                                            ],
+                                              setState(() {});
+                                            },
                                           ),
-                                          const Spacer(),
+                                          SizedBox(width: 10.w),
+                                          Text(
+                                            "Remember me",
+                                            softWrap: true,
+                                            style: Theme.of(
+                                              context,
+                                            ).textTheme.bodyMedium,
+                                          ),
+                                        ],
+                                      )
+                                      .animate()
+                                      .fadeIn(delay: 600.ms)
+                                      .slideX(begin: -0.2),
+                                  SizedBox(height: 5.h),
+                                  Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
                                           TextButton(
                                             onPressed: () {},
                                             child: Text(
@@ -252,9 +252,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ],
                                       )
                                       .animate()
-                                      .fadeIn(delay: 600.ms)
-                                      .slideX(begin: -0.2),
-                                  SizedBox(height: 15.h),
+                                      .fadeIn(delay: 800.ms)
+                                      .slideX(begin: 0.2),
                                 ],
                               ),
                             ),

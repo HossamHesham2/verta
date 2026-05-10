@@ -71,7 +71,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           child: Scaffold(
             body: SafeArea(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.all(20.0),
                 child: SingleChildScrollView(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -106,8 +106,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     color: ColorsManager.dark0F.withValues(
                                       alpha: 0.25,
                                     ),
-                                    blurRadius: 20,
-                                    offset: const Offset(0, 10),
+                                    blurRadius: 24,
+                                    offset: const Offset(5, 20),
                                   ),
                                 ],
                               ),
