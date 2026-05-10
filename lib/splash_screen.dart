@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:verta/config/route/route_name.dart';
 import 'package:verta/core/utils/assets_manager.dart';
 import 'package:verta/core/utils/colors_manager.dart';
+import 'package:verta/core/helpers/shared_pref_helper.dart';
+import 'package:verta/core/utils/const_variables.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,14 +18,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      if (!mounted) return;
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        RouteName.loginScreen,
-        (route) => false,
-      );
-    });
+    navigate();
+  }
+
+  Future<void> navigate() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    bool rememberMe =
+        await SharedPrefHelper.getBool(ConstVariables.rememberMe) ;
+
+    if (!mounted) return;
+
+    Navigator.pushNamedAndRemoveUntil(
+      context,
+      rememberMe ? RouteName.homeScreen : RouteName.loginScreen,
+      (route) => false,
+    );
   }
 
   @override
