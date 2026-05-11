@@ -3,10 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:verta/core/utils/colors_manager.dart';
+import 'package:verta/features/home/presentation/widgets/custom_default_tab_controller.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final String fullName =
       FirebaseAuth.instance.currentUser?.displayName ?? 'User';
 
@@ -36,7 +42,6 @@ class HomeScreen extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleLarge
                                   ?.copyWith(fontWeight: FontWeight.w900),
                             ),
-
                             Text(
                               'You Have 3 tasks today',
                               style: Theme.of(context).textTheme.titleSmall,
@@ -64,7 +69,9 @@ class HomeScreen extends StatelessWidget {
                       ).animate().fadeIn(delay: 200.ms).slideX(begin: 0.2),
                     ],
                   ),
+
                   SizedBox(height: 25.h),
+
                   Container(
                     decoration: BoxDecoration(
                       color: ColorsManager.whiteFF,
@@ -92,7 +99,10 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ).animate().fadeIn(delay: 400.ms).slideY(begin: 0.2),
+
                   SizedBox(height: 25.h),
+
+                  CustomDefaultTabController(),
                 ],
               ),
             ),

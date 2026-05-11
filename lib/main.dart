@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:verta/config/route/route_name.dart';
+import 'package:verta/core/theme/theme_cubit.dart';
 import 'package:verta/core/theme/theming.dart';
 import 'package:verta/features/auth/presentation/manager/auth_bloc.dart';
 import 'package:verta/firebase_options.dart';
@@ -30,14 +31,19 @@ class MyApp extends StatelessWidget {
       builder: (context, child) => MultiBlocProvider(
         providers: [
           BlocProvider<AuthBloc>(create: (_) => getIt<AuthBloc>()),
+          BlocProvider<ThemeCubit>(create: (_) => getIt<ThemeCubit>()),
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: RouteGenerator.goRoute,
-          initialRoute: RouteName.splashScreen,
-          theme: Theming.lightTheme,
-          darkTheme: Theming.darkTheme,
-          themeMode: ThemeMode.system,
+        child: BlocBuilder<ThemeCubit, ThemeState>(
+          builder: (context, state) {
+            return MaterialApp(
+              debugShowCheckedModeBanner: false,
+              onGenerateRoute: RouteGenerator.goRoute,
+              initialRoute: RouteName.splashScreen,
+              theme: Theming.lightTheme,
+              darkTheme: Theming.darkTheme,
+              themeMode: ThemeCubit.get(context).getTheme(),
+            );
+          },
         ),
       ),
     );
