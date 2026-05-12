@@ -43,9 +43,9 @@ dependencies:
   glassmorphism: ^3.0.0
   flutter_animate: ^4.5.2
   flutter_svg: ^2.3.0
-  firebase_core: ^4.7.0
-  firebase_auth: ^6.4.0
-  cloud_firestore: ^6.3.0
+  firebase_core: ^4.8.0
+  firebase_auth: ^6.5.0
+  cloud_firestore: ^6.4.0
   roundcheckbox: ^2.0.5
   equatable: ^2.0.8
   dartz: ^0.10.1
@@ -53,7 +53,7 @@ dependencies:
   get_it: ^9.2.1
   json_annotation: ^4.11.0
   shared_preferences: ^2.5.5
-
+  flutter_cupertino_date_picker_fork: ^1.0.7
 dev_dependencies:
   flutter_test:
     sdk: flutter
