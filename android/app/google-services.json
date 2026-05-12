@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "492731335485",
+    "project_id": "verta-d39cd",
+    "storage_bucket": "verta-d39cd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492731335485:android:e90c6ddaa64e27ab3afb54",
+        "android_client_info": {
+          "package_name": "com.example.verta"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAilL86DilcRt7ePRYNP63pf4AH4kF6wLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

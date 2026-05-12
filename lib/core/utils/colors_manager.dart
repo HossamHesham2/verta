@@ -22,6 +22,7 @@ class ColorsManager {
 
   // ─── NEUTRALS (IMPORTANT FOR UI) ────────────────
   static const Color whiteFF = Color(0xFFFFFFFF);
+  static const Color whiteF0 = Color(0xFFF0F0F0);
 
   static const Color dark0F = Color(0xFF0F172A);
   static const Color dark1E = Color(0xFF1E293B);

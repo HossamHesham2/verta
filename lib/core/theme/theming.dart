@@ -204,12 +204,15 @@ class Theming {
 
   // ─── THEMES ───────────────────────────────────────────────────────
   static ThemeData lightTheme = ThemeData(
-    scaffoldBackgroundColor: ColorsManager.whiteFF,
+    scaffoldBackgroundColor: ColorsManager.whiteF0,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: Colors.transparent
+    ),
     textTheme: _lightTextTheme,
     fontFamily: GoogleFonts.poppins().fontFamily,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: ColorsManager.whiteFF,
+      fillColor: ColorsManager.whiteF0,
 
       contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
       prefixIconColor: ColorsManager.textSecondaryLight,
@@ -233,11 +236,14 @@ class Theming {
 
   static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: ColorsManager.dark0F,
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.transparent
+    ),
     textTheme: _darkTextTheme,
     fontFamily: GoogleFonts.poppins().fontFamily,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: ColorsManager.whiteFF,
+      fillColor: ColorsManager.whiteF0,
       prefixIconColor: ColorsManager.textSecondaryDark,
       suffixIconColor: ColorsManager.textSecondaryDark,
       contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
@@ -252,7 +258,7 @@ class Theming {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16.r),
         borderSide: BorderSide(
-          color: ColorsManager.whiteFF.withValues(alpha: 0.2),
+          color: ColorsManager.whiteF0.withValues(alpha: 0.2),
           width: 1,
         ),
       ),

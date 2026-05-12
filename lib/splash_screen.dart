@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Navigator.pushNamedAndRemoveUntil(
       context,
-      rememberMe ? RouteName.homeScreen : RouteName.loginScreen,
+      rememberMe ? RouteName.mainLayout : RouteName.loginScreen,
       (route) => false,
     );
   }
@@ -70,7 +70,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     child: Image.asset(ImagesManager.logo, width: 120.w),
                   )
                   .animate()
-                  .fadeIn(duration: 600.ms)
+                  .fadeIn(duration: 1000.ms)
                   .scale(begin: const Offset(0.8, 0.8), end: const Offset(1, 1))
                   .moveY(begin: 20, end: 0),
 
@@ -86,7 +86,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   )
                   .animate()
-                  .fadeIn(delay: 300.ms, duration: 600.ms)
+                  .fadeIn(delay: 600.ms, duration: 1200.ms)
                   .moveY(begin: 15, end: 0),
 
               SizedBox(height: 10.h),
@@ -99,7 +99,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   )
                   .animate()
-                  .fadeIn(delay: 500.ms, duration: 700.ms)
+                  .fadeIn(delay: 1000.ms, duration: 1400.ms)
                   .moveY(begin: 10, end: 0),
             ],
           ),
