@@ -25,7 +25,7 @@ A modern **task management app** built with Flutter featuring Glassmorphism UI, 
 * 💾 Offline storage (Hive)
 * 🔍 Search functionality
 * 🎬 Smooth animations
-* ⚙️ BLoC state management 
+* ⚙️ BLoC state management
 
 ---
 
