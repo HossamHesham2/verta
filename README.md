@@ -68,7 +68,6 @@ lib/
 │
 └── main.dart
 ```
-
 ---
 
 ## 📸 Screenshots
