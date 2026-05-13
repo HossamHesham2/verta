@@ -52,6 +52,9 @@ A modern **task management app** built with Flutter featuring Glassmorphism UI, 
 lib/
 │
 ├── core/
+│
+├── config/
+│
 ├── features/
 │   ├── auth/
 │   │   ├── data/
