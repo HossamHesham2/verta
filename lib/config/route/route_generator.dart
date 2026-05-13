@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:verta/config/route/route_name.dart';
 import 'package:verta/features/auth/presentation/pages/login_screen.dart';
 import 'package:verta/features/auth/presentation/pages/register_screen.dart';
+import 'package:verta/features/home/presentation/pages/edit_task_screen.dart';
 import 'package:verta/features/home/presentation/pages/home_screen.dart';
+import 'package:verta/features/home/presentation/pages/task_details_screen.dart';
 import 'package:verta/features/profile/presentation/pages/profile_screen.dart';
 import 'package:verta/features/settings/presentation/pages/settings_screen.dart';
 import 'package:verta/features/task/presentation/pages/add_task_screen.dart';
@@ -29,6 +31,16 @@ class RouteGenerator {
         return CupertinoPageRoute(builder: (context) => ProfileScreen());
       case RouteName.settingScreen:
         return CupertinoPageRoute(builder: (context) => SettingsScreen());
+      case RouteName.taskDetailsScreen:
+        return CupertinoPageRoute(
+          builder: (context) => TaskDetailsScreen(),
+          settings: settings,
+        );
+      case RouteName.editTaskScreen:
+        return CupertinoPageRoute(
+          builder: (context) => EditTaskScreen(),
+          settings: settings,
+        );
       default:
         return CupertinoPageRoute(
           builder: (context) =>

@@ -1,12 +1,15 @@
-import 'dart:ui';
+
+import 'package:flutter/material.dart';
 
 class ColorsManager {
   // ─── PRIMARY COLORS ─────────────────────────────
   static const Color indigo_500 = Color(0xFF6366F1);
   static const Color indigo_600 = Color(0xFF4F46E5);
+  static const Color lavenderBlue = Color(0xFFEEEDFD);
 
   static const Color cyan_500 = Color(0xFF06B6D4);
   static const Color cyan_600 = Color(0xFF0891B2);
+  static const Color lightCyan = Color(0xFFE5F5FA);
 
   static const Color blue_500 = Color(0xFF2B7FFF);
   static const Color blue_600 = Color(0xFF155DFC);
@@ -35,6 +38,7 @@ class ColorsManager {
   static const Color grey_500 = Color(0xFF64748B);
   static const Color grey_600 = Color(0xFF475569);
   static const Color grey_700 = Color(0xFF334155);
+  static const Color transparent = Colors.transparent;
 
   // ─── SEMANTIC COLORS ────────────────────────────
   static const Color success = green_500;

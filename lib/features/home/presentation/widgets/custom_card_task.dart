@@ -1,55 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:roundcheckbox/roundcheckbox.dart';
-import 'package:verta/core/helpers/shared_pref_helper.dart';
+import 'package:verta/core/models/task_model.dart';
 import 'package:verta/core/utils/colors_manager.dart';
-import 'package:verta/core/utils/const_variables.dart';
+import 'package:intl/intl.dart';
 
 class CustomCardTask extends StatefulWidget {
-  const CustomCardTask({super.key});
+  final TaskModel task;
+  Function(int?)? countedTaskComplete;
+
+  CustomCardTask({super.key, required this.task, this.countedTaskComplete});
 
   @override
   State<CustomCardTask> createState() => _CustomCardTaskState();
 }
 
 class _CustomCardTaskState extends State<CustomCardTask> {
-  bool isDone = false;
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
+      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10.h),
       height: 113.h,
       decoration: BoxDecoration(
         color: ColorsManager.whiteFF,
 
         borderRadius: BorderRadius.circular(24.r),
-        boxShadow: [BoxShadow(color: ColorsManager.dark1E.withAlpha(20))],
+        boxShadow: [
+          BoxShadow(
+            color: ColorsManager.dark0F.withValues(alpha: 0.2),
+            blurRadius: 20,
+            offset: const Offset(0, 10),
+          ),
+        ],
       ),
       child: Row(
         children: [
           Column(
             children: [
               RoundCheckBox(
-                isChecked: isDone,
-                checkedColor: Colors.transparent,
-                border: isDone
+                isChecked: widget.task.isCompleted,
+                checkedColor: ColorsManager.transparent,
+                uncheckedColor: ColorsManager.whiteFF,
+                isRound: true,
+                uncheckedWidget: Icon(
+                  Icons.remove,
+                  color: widget.task.isCompleted ? null : ColorsManager.dark0F,
+                  fontWeight: FontWeight.w600,
+                  size: 12.sp,
+                ),
+                border: widget.task.isCompleted
                     ? Border.all(color: ColorsManager.success, width: 1.5.w)
-                    : Border.all(color: Colors.black, width: 1.5.w),
+                    : Border.all(color: ColorsManager.dark0F, width: 1.5.w),
                 size: 22.sp,
                 animationDuration: const Duration(milliseconds: 200),
                 checkedWidget: Icon(
                   Icons.check,
-                  color: isDone ? ColorsManager.success : null,
+                  color: widget.task.isCompleted ? ColorsManager.success : null,
                   fontWeight: FontWeight.w600,
                   size: 12.sp,
                 ),
-                onTap: (bool? selected) async {
-                  isDone = selected ?? false;
-                  await SharedPrefHelper.setData(ConstVariables.isDone, isDone);
+                  onTap: (bool? selected) async {
+                    setState(() {
+                      widget.task.isCompleted = selected ?? false;
+                    });
 
-                  setState(() {});
-                },
+                    await widget.task.save();
+
+                    widget.countedTaskComplete?.call(null);
+                  },
               ),
             ],
           ),
@@ -59,20 +80,20 @@ class _CustomCardTaskState extends State<CustomCardTask> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Task Title',
+                  widget.task.taskTitle,
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.bold,
-                    decoration: isDone ? TextDecoration.lineThrough : null,
-                    color: isDone ? Colors.grey : ColorsManager.dark0F,
+                    decoration: widget.task.isCompleted ? TextDecoration.lineThrough : null,
+                    color: widget.task.isCompleted ? Colors.grey : ColorsManager.dark0F,
                   ),
                 ),
                 SizedBox(height: 4.h),
                 Text(
-                  'Task Description',
+                  widget.task.description,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w400,
-                    decoration: isDone ? TextDecoration.lineThrough : null,
-                    color: isDone ? Colors.grey : ColorsManager.grey_500,
+                    decoration: widget.task.isCompleted ? TextDecoration.lineThrough : null,
+                    color: widget.task.isCompleted ? Colors.grey : ColorsManager.grey_500,
                   ),
                 ),
                 Spacer(),
@@ -89,7 +110,7 @@ class _CustomCardTaskState extends State<CustomCardTask> {
                         ),
                         SizedBox(width: 4.w),
                         Text(
-                          '09:00 AM',
+                          formatDate(widget.task.date),
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: ColorsManager.grey_600),
                         ),
@@ -102,13 +123,13 @@ class _CustomCardTaskState extends State<CustomCardTask> {
                           width: 10.w,
                           height: 10,
                           decoration: BoxDecoration(
-                            color: ColorsManager.red_500,
+                            color: getColorPriority(),
                             borderRadius: BorderRadius.circular(200.r),
                           ),
                         ),
                         SizedBox(width: 4.w),
                         Text(
-                          'High',
+                          widget.task.priority,
                           style: Theme.of(context).textTheme.bodySmall
                               ?.copyWith(color: ColorsManager.grey_600),
                         ),
@@ -122,5 +143,21 @@ class _CustomCardTaskState extends State<CustomCardTask> {
         ],
       ),
     );
+  }
+
+  Color getColorPriority() {
+    if (widget.task.priority == "High") {
+      return ColorsManager.red_600;
+    } else if (widget.task.priority == "Medium") {
+      return ColorsManager.yellow_600;
+    } else if (widget.task.priority == "Low") {
+      return ColorsManager.indigo_600;
+    } else {
+      return ColorsManager.whiteFF;
+    }
+  }
+
+  String formatDate(DateTime date) {
+    return DateFormat('dd MMM yyyy HH:mm  ').format(date);
   }
 }

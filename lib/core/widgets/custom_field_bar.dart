@@ -3,10 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:verta/core/utils/colors_manager.dart';
 
 class CustomFieldBar extends StatelessWidget {
-  final String title;
+  final String? title;
+  final String? initialValue;
   final bool obscureText;
-  final TextEditingController? controller ;
-  final String? Function(String?)? validator ;
+  final TextEditingController? controller;
+
+  final String? Function(String?)? validator;
 
   final String hintText;
   final Widget? suffixIcon;
@@ -15,6 +17,7 @@ class CustomFieldBar extends StatelessWidget {
   const CustomFieldBar({
     super.key,
     required this.title,
+    this.initialValue,
     required this.hintText,
     this.suffixIcon,
     this.validator,
@@ -28,11 +31,13 @@ class CustomFieldBar extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(title, style: Theme
-            .of(context)
-            .textTheme
-            .titleMedium),
-        SizedBox(height: 10.h,),
+        Text(
+          title ?? "",
+          style: Theme.of(
+            context,
+          ).textTheme.titleMedium?.copyWith(color: ColorsManager.dark0F),
+        ),
+        SizedBox(height: 10.h),
         Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -46,14 +51,17 @@ class CustomFieldBar extends StatelessWidget {
             ],
           ),
           child: TextFormField(
+            initialValue: initialValue,
             obscureText: obscureText,
             controller: controller,
-            validator:validator ,
+            validator: validator,
+            style: Theme.of(
+              context,
+            ).textTheme.bodyLarge?.copyWith(color: ColorsManager.dark0F),
             decoration: InputDecoration(
               suffixIcon: suffixIcon,
               prefixIcon: prefixIcon,
               hintText: hintText,
-
             ),
           ),
         ),

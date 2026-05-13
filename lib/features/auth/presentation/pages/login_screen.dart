@@ -28,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
 
   @override
   void dispose() {
@@ -52,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
               passwordController.clear();
               Navigator.pushNamedAndRemoveUntil(
                 context,
-                RouteName.homeScreen,
+                RouteName.mainLayout,
                 (route) => false,
               );
             },
@@ -120,7 +121,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 20.h),
                       Form(
                         key: _formKey,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        autovalidateMode: _autoValidateMode,
                         child: Column(
                           children: [
                             Container(
@@ -131,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 boxShadow: [
                                   BoxShadow(
                                     color: ColorsManager.dark0F.withValues(
-                                      alpha: 0.25 ,
+                                      alpha: 0.25,
                                     ),
                                     blurRadius: 24,
                                     offset: const Offset(5, 20),
@@ -272,6 +273,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 .trim(),
                                           ),
                                         );
+                                      } else {
+                                        setState(() {
+                                          _autoValidateMode = AutovalidateMode
+                                              .onUserInteraction;
+                                        });
                                       }
                                     },
                                   )
