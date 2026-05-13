@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
+import 'package:verta/core/errors/exceptions.dart';
 import 'package:verta/core/helpers/hive_data_store.dart';
 import 'package:verta/core/models/task_model.dart';
-import 'package:verta/core/utils/exception_handler.dart';
 
 part 'home_event.dart';
 
@@ -57,7 +57,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       emit(HomeSuccessState());
 
       emit(TaskLoadedHomeState(hiveDataStore.getTasks()));
-    } on Exception catch (e) {
+    } on AppException catch (e) {
       emit(HomeFailure(error: e.toString()));
     }
   }
@@ -77,7 +77,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       await tasks[index].delete();
       emit(DeleteTaskState());
       emit(TaskLoadedHomeState(hiveDataStore.getTasks()));
-    } on ExceptionHandler catch (e) {
+    } on AppException catch (e) {
       emit(HomeFailure(error: e.toString()));
     }
   }
@@ -104,7 +104,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       await tasks[index].save();
       emit(UpdateTaskState());
       emit(TaskLoadedHomeState(hiveDataStore.getTasks()));
-    } on ExceptionHandler catch (e) {
+    } on AppException catch (e) {
       emit(HomeFailure(error: e.toString()));
     }
   }

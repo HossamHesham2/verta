@@ -82,13 +82,7 @@ class _EditTaskScreenState extends State<EditTaskScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: BlocListener<HomeBloc, HomeState>(
         listener: (context, state) {
-          if (state is HomeLoadingState) {
-            showDialog(
-              context: context,
-              barrierDismissible: false,
-              builder: (_) => const Center(child: CircularProgressIndicator()),
-            );
-          }
+
           if (state is UpdateTaskState) {
             CustomGlassDialog.showVariant(
               context: context,
