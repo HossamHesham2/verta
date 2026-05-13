@@ -27,7 +27,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final passwordConfirmController = TextEditingController();
-
+  AutovalidateMode _autoValidateMode = AutovalidateMode.disabled;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(
@@ -93,7 +93,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       SizedBox(height: 20.h),
                       Form(
                         key: _formKey,
-                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        autovalidateMode:_autoValidateMode,
                         child: Column(
                           children: [
                             Container(
@@ -219,6 +219,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 .trim(),
                                           ),
                                         );
+                                      }else {
+                                        setState(() {
+                                          _autoValidateMode = AutovalidateMode.always;
+                                        });
                                       }
                                     },
                                   )

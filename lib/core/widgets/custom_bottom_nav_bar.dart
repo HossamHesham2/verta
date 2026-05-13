@@ -14,6 +14,9 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
     final List<IconData> icons = [
       Icons.home_outlined,
       Icons.add_outlined,
@@ -28,11 +31,13 @@ class CustomBottomNavBar extends StatelessWidget {
       child: BackdropFilter(
         filter: ImageFilter.blur(sigmaX: 15, sigmaY: 15),
         child: Container(
-          padding: EdgeInsets.symmetric(vertical: 10),
+          padding: const EdgeInsets.symmetric(vertical: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(30),
-            color: ColorsManager.whiteFF.withOpacity(0.12),
-            border: Border.all(color: Colors.black.withOpacity(0.1)),
+            color: isDark
+                ? Colors.white.withAlpha(5)
+                : Colors.white.withAlpha(12),
+            border: Border.all(color: colorScheme.outline.withAlpha(1)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -43,14 +48,19 @@ class CustomBottomNavBar extends StatelessWidget {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 250),
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 18,
+                    horizontal: 20,
                     vertical: 10,
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: currentIndex == index
-                        ? ColorsManager.indigo_500
-                        : Colors.transparent,
+                    gradient: currentIndex == index
+                        ? LinearGradient(
+                            colors: [
+                              ColorsManager.indigo_500,
+                              ColorsManager.cyan_500,
+                            ],
+                          )
+                        : null,
                   ),
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
@@ -58,17 +68,19 @@ class CustomBottomNavBar extends StatelessWidget {
                       Icon(
                         icons[index],
                         color: currentIndex == index
-                            ? ColorsManager.whiteF0
-                            : ColorsManager.dark1E,
+                            ? colorScheme.onPrimary
+                            : colorScheme.onSurface,
                         size: 28,
                       ),
+
                       const SizedBox(height: 4),
+
                       Text(
                         titles[index],
                         style: TextStyle(
                           color: currentIndex == index
-                              ? ColorsManager.whiteF0
-                              : ColorsManager.dark1E,
+                              ? colorScheme.onPrimary
+                              : colorScheme.onSurface,
                           fontSize: 11,
                           fontWeight: FontWeight.w600,
                         ),

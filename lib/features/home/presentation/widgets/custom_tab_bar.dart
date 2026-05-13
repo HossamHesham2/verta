@@ -11,9 +11,9 @@ class CustomTabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 55.h,
       alignment: Alignment.center,
-      padding: EdgeInsets.symmetric(horizontal: 25.w),
+      height: 40.h,
+      padding: EdgeInsets.symmetric(horizontal: 15.w),
       decoration: BoxDecoration(
         color: isSelected ? null : Colors.transparent,
         borderRadius: BorderRadius.circular(14.r),
@@ -26,13 +26,10 @@ class CustomTabBar extends StatelessWidget {
       child: Text(
         text,
         style: isSelected
-            ? Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: ColorsManager.whiteFF,
-                  fontWeight: FontWeight.bold,
-                )
-            : Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  color: ColorsManager.dark1E,
-                ),
+            ? Theme.of(
+                context,
+              ).textTheme.bodyLarge?.copyWith(color: ColorsManager.whiteFF)
+            : Theme.of(context).textTheme.bodyLarge,
       ),
     );
   }

@@ -206,13 +206,13 @@ class Theming {
   static ThemeData lightTheme = ThemeData(
     scaffoldBackgroundColor: ColorsManager.whiteF0,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        backgroundColor: Colors.transparent
+      backgroundColor: Colors.transparent,
     ),
     textTheme: _lightTextTheme,
     fontFamily: GoogleFonts.poppins().fontFamily,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: ColorsManager.whiteF0,
+      fillColor: ColorsManager.whiteFF,
 
       contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
       prefixIconColor: ColorsManager.textSecondaryLight,
@@ -237,15 +237,20 @@ class Theming {
   static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: ColorsManager.dark0F,
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: Colors.transparent
+      backgroundColor: Colors.transparent,
     ),
+
     textTheme: _darkTextTheme,
     fontFamily: GoogleFonts.poppins().fontFamily,
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: ColorsManager.whiteF0,
+      fillColor: ColorsManager.whiteFF,
       prefixIconColor: ColorsManager.textSecondaryDark,
       suffixIconColor: ColorsManager.textSecondaryDark,
+      labelStyle: TextStyle(fontSize: 14.sp, color: ColorsManager.dark0F),
+      hintStyle: TextStyle(fontSize: 14.sp, color: ColorsManager.dark0F),
+      helperStyle: TextStyle(fontSize: 14.sp, color: ColorsManager.dark0F),
+
       contentPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16.r),
