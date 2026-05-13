@@ -14,7 +14,7 @@ A modern **task management app** built with Flutter featuring Glassmorphism UI, 
 
 ---
 
-## ✨ Features
+##✨ Features
 
 * ➕ Add, edit, and delete tasks
 * 🗂 Organize tasks by categories
@@ -26,15 +26,17 @@ A modern **task management app** built with Flutter featuring Glassmorphism UI, 
 * 🔍 Search functionality
 * 🎬 Smooth animations
 * ⚙️ BLoC state management
+* 🔐 User Authentication (Firebase)
 
----
+⸻
 
-## 🛠 Tech Stack
+##🛠 Tech Stack
 
 * Flutter
 * Dart
 * flutter_bloc
 * Hive
+* Firebase Auth
 * get_it / injectable
 * flutter_animate
 * glassmorphism
@@ -100,7 +102,6 @@ flutter run
 
 * 🔔 Notifications
 * ☁️ Cloud sync
-* 🔐 Firebase auth
 * 🤖 AI task suggestions
 * 📅 Calendar integration
 
