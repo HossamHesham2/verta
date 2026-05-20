@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:verta/config/route/route_name.dart';
 import 'package:verta/core/models/task_model.dart';
+import 'package:verta/core/utils/colors_manager.dart';
 import 'package:verta/features/home/presentation/manager/home_bloc.dart';
 import 'package:verta/features/home/presentation/widgets/custom_card_task.dart';
 import 'package:verta/features/home/presentation/widgets/custom_tab_bar.dart';
@@ -31,6 +33,7 @@ class _CustomDefaultTabControllerState
 
   List<TaskModel> _filterTasks(String category) {
     if (category == "All") return widget.tasks;
+
     return widget.tasks.where((task) => task.category == category).toList();
   }
 
@@ -51,7 +54,9 @@ class _CustomDefaultTabControllerState
                 "Today's Tasks",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
+
               SizedBox(height: 10.h),
+
               SizedBox(
                 height: 55.h,
                 child: ListView.builder(
@@ -61,7 +66,11 @@ class _CustomDefaultTabControllerState
                     return Padding(
                       padding: EdgeInsets.only(right: 8.w),
                       child: GestureDetector(
-                        onTap: () => setState(() => currentIndex = index),
+                        onTap: () {
+                          setState(() {
+                            currentIndex = index;
+                          });
+                        },
                         child: CustomTabBar(
                           text: categories[index],
                           isSelected: currentIndex == index,
@@ -71,6 +80,7 @@ class _CustomDefaultTabControllerState
                   },
                 ),
               ),
+
               SizedBox(height: 10.h),
             ],
           ),
@@ -83,19 +93,65 @@ class _CustomDefaultTabControllerState
             : SliverList(
                 delegate: SliverChildBuilderDelegate((context, index) {
                   final task = filtered[index];
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pushNamed(
-                        context,
-                        RouteName.taskDetailsScreen,
-                        arguments: task,
-                      );
-                    },
-                    child: CustomCardTask(
-                      task: task,
-                      countedTaskComplete: (_) {
-                        context.read<HomeBloc>().add(GetAllTaskHomeEvent());
+
+                  return Container(
+                    margin: EdgeInsets.symmetric(vertical: 5.h),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                          context,
+                          RouteName.taskDetailsScreen,
+                          arguments: task,
+                        );
                       },
+                      child: Slidable(
+                        key: ValueKey(task.taskId),
+                        endActionPane: ActionPane(
+                          motion: const ScrollMotion(),
+                          children: [
+                            SlidableAction(
+                              onPressed: (_) {
+                                context.read<HomeBloc>().add(
+                                  DeleteTaskEvent(task.taskId),
+                                );
+                              },
+
+                              backgroundColor: ColorsManager.red_600.withAlpha(
+                                300,
+                              ),
+                              foregroundColor: ColorsManager.red_500,
+                              icon: Icons.delete_outline,
+                              borderRadius: BorderRadius.circular(16.r),
+                              label: 'Delete',
+                            ),
+                            SizedBox(width: 5.w,),
+                            SlidableAction(
+                              onPressed: (_) {
+                                Navigator.pushNamed(
+                                  context,
+                                  RouteName.editTaskScreen,
+                                  arguments: task,
+                                );
+                              },
+
+                              backgroundColor: ColorsManager.green_600.withAlpha(
+                                300,
+                              ),
+                              foregroundColor: ColorsManager.green_600,
+                              icon: Icons.edit_note_outlined,
+                              borderRadius: BorderRadius.circular(16.r),
+                              label: 'Edit',
+                            ),
+                          ],
+                        ),
+
+                        child: CustomCardTask(
+                          task: task,
+                          countedTaskComplete: (_) {
+                            context.read<HomeBloc>().add(GetAllTaskHomeEvent());
+                          },
+                        ),
+                      ),
                     ),
                   );
                 }, childCount: filtered.length),

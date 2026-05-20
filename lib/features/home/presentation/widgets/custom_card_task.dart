@@ -22,7 +22,7 @@ class _CustomCardTaskState extends State<CustomCardTask> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(16),
-      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10.h),
+      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 0.h),
       height: 113.h,
       decoration: BoxDecoration(
         color: ColorsManager.whiteFF,

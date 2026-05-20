@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:verta/core/widgets/custom_box_button.dart';
 import 'package:verta/features/home/presentation/manager/home_bloc.dart';
 import 'package:verta/features/home/presentation/widgets/custom_default_tab_controller.dart';
